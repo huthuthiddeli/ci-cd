@@ -1,0 +1,31 @@
+name: Continuous Integration and Deployement
+
+on:
+  push:
+    branches:
+        - main
+
+env:
+  DOTNET_VERSION: '8.0.x'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    environment: Azure
+
+    steps:
+      - name: Checkout code🤡
+        uses: actions/checkout@v4
+
+      - name: Setup dotnet 8 
+        uses: actions/setup-dotnet@v4
+        with: 
+          dotnet-version: ${{ env.DOTNET_VERSION }}
+
+      - name: Restore dependencies 😭
+        run: dotnet restore WebApp_API
+
+      - name: Build App🛬🏢
+        uses: dotnet build -c Release --no-restore ./WebApp_API/ci-cd.sln
+
+        
