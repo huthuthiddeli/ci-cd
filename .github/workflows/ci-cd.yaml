@@ -26,6 +26,5 @@ jobs:
         run: dotnet restore WebApp_API
 
       - name: Build App🛬🏢
-        uses: dotnet build -c Release --no-restore ./WebApp_API/ci-cd.sln
+        run: dotnet build -c Release --no-restore ./WebApp_API/ci-cd.sln
 
-        
